@@ -1,1 +1,501 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Empower Hour: Fostering Disability Inclusion</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --google-blue: #4285F4;
+            --google-red: #DB4437;
+            --google-yellow: #F4B400;
+            --google-green: #0F9D58;
+            --text-color: #202124;
+            --background-color: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: var(--background-color);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        #main-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        .logo img {
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--google-blue);
+        }
+
+        #menu-toggle {
+            display: none;
+        }
+
+        main {
+            margin-top: 60px;
+        }
+
+        section {
+            padding: 4rem 0;
+        }
+
+        h1, h2, h3 {
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--google-blue);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--google-red);
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: var(--google-green);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-between;
+        }
+
+        .card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            flex: 1 1 calc(33.333% - 20px);
+            min-width: 250px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: var(--google-blue);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #3367D6;
+        }
+
+        blockquote {
+            border-left: 4px solid var(--google-yellow);
+            padding-left: 20px;
+            font-style: italic;
+            margin: 20px 0;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--google-blue);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            display: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-color: #3367D6;
+        }
+
+        @media (max-width: 768px) {
+            #menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            #menu-toggle span {
+                display: block;
+                width: 25px;
+                height: 3px;
+                background-color: var(--text-color);
+                margin: 5px 0;
+                transition: 0.4s;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: var(--background-color);
+                box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 10px;
+            }
+
+            .card {
+                flex: 1 1 100%;
+            }
+        }
+
+        .particle {
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav id="main-nav">
+            <div class="container">
+                <a href="#" class="logo">
+                    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" alt="Google Logo">
+                    <span>Empower Hour</span>
+                </a>
+                <button id="menu-toggle" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="#intro">はじめに</a></li>
+                    <li><a href="#why-diversity">多様性の重要性</a></li>
+                    <li><a href="#inclusive-workplace">インクルーシブな職場</a></li>
+                    <li><a href="#diversity-results">多様性の成果</a></li>
+                    <li><a href="#working-at-google">Googleの魅力</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="container">
+                <h1>Googleのインクルーシブな職場環境:<br>多様性が生み出すイノベーション</h1>
+                <a href="https://careersonair.withgoogle.com/events/empower-jp-oct2024#" class="cta-button" target="_blank" rel="noopener noreferrer">イベントページへ</a>
+            </div>
+        </section>
+
+        <section id="intro">
+            <div class="container">
+                <h2>はじめに</h2>
+                <p>テクノロジー業界のリーダーであるGoogleは、多様性とインクルージョンを重視した職場環境づくりで知られています。本記事では、Googleの社員や管理職の生の声を通じて、同社がどのようにして多様な人材を活かし、イノベーションを生み出しているかを探ります。</p>
+            </div>
+        </section>
+
+        <section id="why-diversity">
+            <div class="container">
+                <h2>Googleが多様性を重視する理由</h2>
+                <blockquote>
+                    <p>Googleのミッションである『世界中の情報を整理し、世界中の人々がアクセスできて使えるようにすること』を達成するためには、多彩な才能を持つ人材が力を合わせることが不可欠です。確信的なアイデアは、多様な視点を持つ人材が集まることで生まれます。</p>
+                    <cite>- 奥山真司, Google日本法人代表</cite>
+                </blockquote>
+            </div>
+        </section>
+
+        <section id="inclusive-workplace">
+            <div class="container">
+                <h2>インクルーシブな職場環境の実現</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <h3>フレキシブルな働き方</h3>
+                        <ul>
+                            <li>リモートワークの活用</li>
+                            <li>フレックスタイム制の導入</li>
+                            <li>個人の状況に合わせた勤務時間の調整</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>バリアフリーな環境整備</h3>
+                        <ul>
+                            <li>物理的なサポートデバイスの提供</li>
+                            <li>聴覚障害者向けのクリアマスクの使用</li>
+                            <li>アクセシビリティに関する全社員向けトレーニング</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>多様性を活かしたプロジェクト</h3>
+                        <ul>
+                            <li>20%プロジェクト: 業務時間の20%を自由な取り組みに充てる制度</li>
+                            <li>バンジープログラム: 期間限定で他部署の業務を経験できる制度</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="diversity-results">
+            <div class="container">
+                <h2>多様性がもたらす成果</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <h3>ユーザー視点の製品開発</h3>
+                        <p>障害のある社員の視点から生まれた機能（例: 音声認識技術、リアルタイム字幕機能）</p>
+                    </div>
+                    <div class="card">
+                        <h3>グローバルな視点の獲得</h3>
+                        <p>国際的なチーム構成による多角的な問題解決と文化の違いを活かしたアイデア創出</p>
+                    </div>
+                    <div class="card">
+                        <h3>イノベーションの促進</h3>
+                        <p>異なる背景を持つ社員同士の協働と多様な経験や知識の融合</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="working-at-google">
+            <div class="container">
+                <h2>Googleで働く魅力</h2>
+                <div class="card-container">
+                    <div class="card">
+                        <h3>学習と成長の機会</h3>
+                        <ul>
+                            <li>最先端の技術に触れる環境</li>
+                            <li>社内外の専門家との交流</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>包括的な支援制度</h3>
+                        <ul>
+                            <li>障害のある社員へのサポート</li>
+                            <li>言語学習プログラムの提供</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>オープンな企業文化</h3>
+                        <ul>
+                            <li>フラットな組織構造</li>
+                            <li>自由な意見交換の促進</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion">
+            <div class="container">
+                <h2>まとめ</h2>
+                <p>Googleの事例は、多様性とインクルージョンが単なる社会的責任ではなく、ビジネス成功の鍵であることを示しています。異なる背景や経験を持つ人々が互いを尊重し、協力し合える環境を整えることで、革新的なアイデアが生まれ、より多くのユーザーのニーズに応えられる製品開発が可能になるのです。</p>
+                <a href="https://youtu.be/6BNs47tmMVo?si=NG0PEJdgVWQdBuF9" class="cta-button" target="_blank" rel="noopener noreferrer">イベント動画を見る</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Google LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button id="back-to-top" aria-label="Back to top">↑</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const backToTopButton = document.getElementById('back-to-top');
+
+            // Mobile menu toggle
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    navLinks.classList.remove('active');
+                    menuToggle.classList.remove('active');
+
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Back to top button
+            window.addEventListener('scroll', function() {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.style.display = 'block';
+                } else {
+                    backToTopButton.style.display = 'none';
+                }
+            });
+
+            backToTopButton.addEventListener('click', function() {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+
+            // GSAP animations
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Fade in sections on scroll
+            gsap.utils.toArray('section').forEach(section => {
+                gsap.from(section, {
+                    opacity: 0,
+                    y: 50,
+                    duration: 1,
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%",
+                        end: "bottom 20%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+
+            // Animate cards
+            gsap.utils.toArray('.card').forEach(card => {
+                gsap.from(card, {
+                    opacity: 0,
+                    scale: 0.8,
+                    duration: 0.5,
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 90%",
+                        end: "bottom 10%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+            });
+
+            // Particle animation in the hero section
+            const heroSection = document.getElementById('hero');
+            for (let i = 0; i < 50; i++) {
+                createParticle(heroSection);
+            }
+        });
+
+        function createParticle(container) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            const size = Math.random() * 5 + 2;
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            const googleColors = ['#4285F4', '#DB4437', '#F4B400', '#0F9D58'];
+            particle.style.backgroundColor = googleColors[Math.floor(Math.random() * googleColors.length)];
+            
+            particle.style.position = 'absolute';
+            particle.style.left = `${Math.random() * 100}%`;
+            particle.style.top = `${Math.random() * 100}%`;
+            
+            container.appendChild(particle);
+            
+            gsap.to(particle, {
+                x: `random(-50, 50, 5)`,
+                y: `random(-50, 50, 5)`,
+                opacity: 0,
+                duration: `random(3, 5)`,
+                repeat: -1,
+                yoyo: true,
+                ease: "power1.inOut"
+            });
+        }
+    </script>
+</body>
+</html>
 
