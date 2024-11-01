@@ -183,14 +183,7 @@
             height: 50px;
             font-size: 24px;
             cursor: pointer;
-            display: none;
-            transition: background-color 0.3s ease;
-        }
-
-        #back-to-top:hover {
-            background-color: #202124;
-        }
-animation: rotate 2s linear infinite;
+            animation: rotate 2s linear infinite;
         }
 
         @keyframes rotate {
@@ -201,6 +194,14 @@ animation: rotate 2s linear infinite;
                 transform: rotate(360deg);
             }
         }
+            display: none;
+            transition: background-color 0.3s ease;
+        }
+
+        #back-to-top:hover {
+            background-color: #202124;
+        }
+
         @media (max-width: 768px) {
             #menu-toggle {
                 display: block;
