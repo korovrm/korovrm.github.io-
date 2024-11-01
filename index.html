@@ -241,6 +241,44 @@
         .particle {
             pointer-events: none;
         }
+
+         body {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            margin-top: 50px; /* 余白を追加 */
+        }
+        .centered {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 50px; /* 動画の上に余白を追加 */
+        }
+        .footer {
+            margin-top: auto; /* フッターの下に余白を追加 */
+            padding-bottom: 50px; /* フッターの下に余白を追加 */
+        }
+        .aspect-w-16 {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 アスペクト比 */
+        }
+        .aspect-w-16 iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+
+        
     </style>
 </head>
 <body>
