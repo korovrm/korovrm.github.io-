@@ -242,13 +242,19 @@
             pointer-events: none;
         }
 
-         body {
+             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中央配置の動画</title>
+    <style>
+        body {
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
             height: 100vh;
             margin: 0;
+        }
+        header, footer {
+            flex-shrink: 0; /* ヘッダーとフッターのサイズを固定 */
         }
         .container {
             margin-top: 50px; /* 余白を追加 */
@@ -276,8 +282,7 @@
             width: 100%;
             height: 100%;
         }
-
-
+    
         
     </style>
 </head>
