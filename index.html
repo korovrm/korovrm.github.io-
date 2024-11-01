@@ -242,48 +242,46 @@
             pointer-events: none;
         }
 
-             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>中央配置の動画</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            height: 100vh;
-            margin: 50;
-        }
-        header, footer {
-            flex-shrink: 0; /* ヘッダーとフッターのサイズを固定 */
-        }
-        .container {
-            margin-top: 5px; /* 余白を追加 */
-        }
-        .centered {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 25px; /* 動画の上に余白を追加 */
-        }
-        .footer {
-            margin-top: auto; /* フッターの下に余白を追加 */
-            padding-bottom: 5px; /* フッターの下に余白を追加 */
-        }
-        .aspect-w-16 {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%; /* 16:9 アスペクト比 */
-        }
-        .aspect-w-16 iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-    
-        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>中央配置の動画</title>
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                height: 100vh;
+                margin: 50;
+            }
+            header, footer {
+                flex-shrink: 0; /* ヘッダーとフッターのサイズを固定 */
+            }
+            .container {
+                margin-top: 5px; /* 余白を追加 */
+            }
+            .centered {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                margin-top: 25px; /* 動画の上に余白を追加 */
+            }
+            .footer {
+                margin-top: auto; /* フッターの下に余白を追加 */
+                padding-bottom: 5px; /* フッターの下に余白を追加 */
+            }
+            .aspect-w-16 {
+                position: relative;
+                width: 100%;
+                padding-bottom: 56.25%; /* 16:9 アスペクト比 */
+            }
+            .aspect-w-16 iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
     </style>
 </head>
 <body>
