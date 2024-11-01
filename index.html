@@ -190,7 +190,17 @@
         #back-to-top:hover {
             background-color: #202124;
         }
+animation: rotate 2s linear infinite;
+        }
 
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
         @media (max-width: 768px) {
             #menu-toggle {
                 display: block;
